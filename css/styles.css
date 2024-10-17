@@ -18,3 +18,7 @@ header nav a {
 main {
     padding: 2rem;
 }
+
+code {
+    background-color: darkgray;
+}
