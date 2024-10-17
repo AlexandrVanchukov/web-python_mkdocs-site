@@ -1,2 +1,5 @@
 site_name: My Docs
 site_url: 'https://alexandrvanchukov.github.io/web-python_mkdocs-site/'
+theme:
+  name: null
+  custom_dir: theme
