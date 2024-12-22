@@ -4,32 +4,37 @@ on:
   push:
 
 jobs:
-  build:
-    name: Build and Deploy
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Python Setup
+      - name: Set up Python
         uses: actions/setup-python@v4
-        with: 
-          python-version: 3.12
-        
-      - name: MkDocs Setup
-        run: pip install mkdocs
+        with:
+          python-version: '3.x'
 
-      - name: Build
-        run: mkdocs build
+      - name: Install Python Dependencies
+        run: |
+          pip install mkdocs mkdocs-material
 
-      # - name: Setup Pages
-      #   uses: actions/configure-pages@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
 
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     path: '.'
+      - name: Install Node.js Dependencies
+        run: npm install
+
+      - name: Build CSS and JS
+        run: npm run build
+
+      - name: Build Site with MkDocs
+        run: mkdocs build --clean
+
+      - name: Validate HTML
+        run: npm run validate:html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
