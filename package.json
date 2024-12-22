@@ -5,7 +5,7 @@
   "scripts": {
     "build:css": "postcss theme/css/styles.css -o theme/css/styles.min.css",
     "validate:html": "htmlhint site/**/*.html",
-    "minify:html": "html-minifier --remove-comments --collapse-whitespace --input-dir ./site --output-dir . --file-ext html;",
+    "minify:html": "html-minifier --remove-comments --collapse-whitespace --input-dir ./site --output-dir ./site --file-ext html",
     "build": "npm run build:css && mkdocs build --clean && npm run minify:html"
   },
   "keywords": [],
